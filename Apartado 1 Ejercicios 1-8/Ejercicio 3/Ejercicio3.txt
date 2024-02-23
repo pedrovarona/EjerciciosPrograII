@@ -1,0 +1,18 @@
+El problema de las Torres de Hanoi consiste en mover discos de diferentes tamaños 
+de una de las torres a la otra. 
+Existen ciertas reglas:
+
+1. Solo se puede mover un disco a la vez.
+2. Un disco más grande no puede ser colocado encima de un disco más pequeño.
+3. Todos los discos deben ser transferidos de una torre a otra.
+
+El problema de las Torres de Hanoi se puede resolver recursivamente. La solución consiste en dividir el problema 
+en subproblemas más pequeños y resolver cada uno de ellos de manera recursiva.
+
+El algoritmo para resolver el problema de las Torres de Hanoi es el siguiente:
+
+Mover el disco más pequeño de la torre de origen a la torre intermedia.
+Mover el disco más grande de la torre de origen a la torre destino.
+Mover el disco más pequeño de la torre intermedia a la torre destino.
+
+Este proceso se repite hasta que todos los discos se hayan transferido a la torre destino. 

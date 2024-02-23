@@ -1,0 +1,9 @@
+La recursividad en programación implica que una función se llame a sí misma para 
+resolver un problema. Se divide el problema en partes más pequeñas, se resuelven 
+de manera recursiva hasta llegar a casos simples que se pueden resolver directamente 
+(caso base). Luego, se combinan las soluciones de los casos simples para obtener la 
+solución del problema original.
+
+
+
+

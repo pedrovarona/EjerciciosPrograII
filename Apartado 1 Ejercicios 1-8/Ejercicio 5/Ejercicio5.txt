@@ -1,0 +1,4 @@
+El desbordamiento de pila se produce al agotar la memoria destinada a almacenar llamadas
+recursivas debido a una cantidad excesiva de estas. Aunque generalmente se suele evitar 
+dicho desbordamiento a veces la recursión puede mejorar el codigo a pesar de la eficiencia
+en memoria. En esos casos, la claridad del código puede justificar el sacrificio de eficiencia.
