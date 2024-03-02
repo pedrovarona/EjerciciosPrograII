@@ -1,5 +1,0 @@
-Las expresiones Lambda definen la regla de correspondencia entre unos argumentos y un resultado.
-Sirven para definir funciones, o subrutinas, anónimas. Se emplea por varios motivos:
-1. Su gran potencia y expresividad.
-2. Son un mecanismo sencillo y potente de definir comportamiento, u objetos, no reutilizables, que solamentese emplean una vez. Reduce notablemente la cantidad de código.
-3. Se usan a menudo como argumentos que se pasan a funciones de orden superior, por ejemplo uncomparador para ordenar un contenedor. Permiten pasar comportamiento como un parámetro.
