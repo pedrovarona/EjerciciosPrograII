@@ -1,0 +1,3 @@
+List en java es una interfaz la cual te permite acceder a traves de los indices y
+permite duplicados. Por otro lado ArrayList es una clase concreta que list implementa.
+La implementa a traves de un arreglo dinamico el cual sirve para almacenar elementos.
