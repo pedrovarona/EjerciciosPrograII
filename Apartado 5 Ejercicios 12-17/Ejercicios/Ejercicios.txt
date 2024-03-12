@@ -1,0 +1,367 @@
+Ejercicio12
+Las expresiones Lambda definen la regla de correspondencia entre unos argumentos y un resultado.
+Sirven para definir funciones, o subrutinas, anónimas. Se emplea por varios motivos:
+1. Su gran potencia y expresividad.
+2. Son un mecanismo sencillo y potente de definir comportamiento, u objetos, no reutilizables, que solamentese emplean una vez. Reduce notablemente la cantidad de código.
+3. Se usan a menudo como argumentos que se pasan a funciones de orden superior, por ejemplo uncomparador para ordenar un contenedor. Permiten pasar comportamiento como un parámetro.
+
+Ejercicio13
+import java.util.*;
+import java.util.function.Function;
+
+public class Ejercicio13 {
+
+  public static void main(String[] args) {
+    try (Scanner sc = new Scanner(System.in)) {
+
+      System.out.println("Añadirlimite inferior:");
+      double limInf = sc.nextDouble();
+
+      System.out.println("Añadir limite superior:");
+      double limSup = sc.nextDouble();
+
+      System.out.println("Añadir paso:");
+      double paso = sc.nextDouble();
+
+      double integral = integral(limInf, limSup, paso, x -> Math.pow(Math.exp(x), 2));
+
+      System.out.println("La integral de e^x^2 desde " + limInf + " hasta " + limSup +
+          " con paso de " + paso + " es: " + integral);
+    }
+  }
+
+  public static double integral(double a, double b, double h, Function<Double, Double> funcion) {
+    double suma = 0;
+    for (double x = a; x < b; x += h) {
+      suma += funcion.apply(x) * h;
+    }
+    return suma;
+  }
+}
+
+Ejercicio14
+import java.util.*;
+import java.util.stream.*;
+public class Ejercicio14 {
+    public static void main(String[] args) {
+        // Apartado 1.
+        IntStream apartado1 = IntStream.of(1, 2, 3, 4, 5);
+        System.out.println("Apartado 1:");
+        apartado1.forEach(System.out::println);
+
+        // Apartado 2.
+        IntStream apartado2 = IntStream.range(1, 6); 
+        System.out.println("Apartado 2:");
+        apartado2.forEach(System.out::println);
+
+        // Apartado 3.
+        IntStream apartado3 = IntStream.iterate(1, n -> n + 2).limit(5);
+        System.out.println("Apartado 3:");
+        apartado3.forEach(System.out::println);
+
+        // Apartado 4.
+        Random random = new Random();
+        DoubleStream apartado4 = random.doubles(5); 
+        System.out.println("Apartado 4:");
+        apartado4.forEach(System.out::println);
+    }
+}
+
+Ejercicio15
+package Ejercicio15.src.principal;
+
+import java.util.*;
+
+import Ejercicio15.src.dominio.Matematicas;
+
+public class Principal {
+    public static void main(String[] args) {
+
+        System.out.println("1. Suma hasta 8: " + Matematicas.sumahasta(8));
+        System.out.println("2. Factorial de 4: " + Matematicas.factorial(4));
+        System.out.println("3. Potencia de 5^3: " + Matematicas.potencia(5, 3));
+
+        List<Integer> numeros = Arrays.asList(1, 2, 3, 4, 5);
+        System.out.println("4. Suma de la lista: " + Matematicas.sumalista(numeros));
+        System.out.println("5. Media de la lista: " + Matematicas.media(numeros));
+        System.out.println("6. Desviación típica de la lista: " + Matematicas.desviaciontipica(numeros));
+        System.out.println("7. Suma de los primeros pares hasta 9: " + Matematicas.sumapares(9));
+
+        List<Integer> numerosPares = Arrays.asList(1, 2, 3, 4);
+        System.out.println("8. Suma de los pares en la lista: " + Matematicas.sumapareslista(numerosPares));
+
+        List<Integer> listaInicial = Arrays.asList(1, 2, 6, 11);
+        System.out.println("9. Lista de pares de la lista inicial: " + Matematicas.obtenerlistapares(listaInicial));
+        System.out.println("10. Lista de pares hasta 9: " + Matematicas.listapares(9));
+
+        List<Integer> lista1 = Arrays.asList(1, 2, 3);
+        List<Integer> lista2 = Arrays.asList(2, 4, 6);
+        System.out
+                .println("11. Producto escalar de las listas: " + Matematicas.calcularproductoescalar(lista1, lista2));
+
+        
+    }
+}
+package Ejercicio15.src.dominio;
+
+import java.util.*;
+import java.util.stream.*;
+
+public class Matematicas {
+
+
+    public static int sumahasta(int n) {
+        return IntStream.rangeClosed(0, n).sum();
+    }
+
+    public static int factorial(int n) {
+        return IntStream.rangeClosed(1, n).reduce(1, (a, b) -> a * b);
+    }
+
+    public static double potencia(double base, int exponente) {
+        return Math.pow(base, exponente);
+    }
+
+    public static int sumalista(List<Integer> numeros) {
+        return numeros.stream().mapToInt(Integer::intValue).sum();
+    }
+
+    public static double media(List<Integer> numeros) {
+        return numeros.stream().mapToInt(Integer::intValue).average().orElse(0.0);
+    }
+
+    public static double desviaciontipica(List<Integer> numeros) {
+        double media = media(numeros);
+        double sumaCuadrados = numeros.stream().mapToDouble(x -> Math.pow(x - media, 2)).sum();
+        return Math.sqrt(sumaCuadrados / numeros.size());
+    }
+
+    public static int sumapares(int n) {
+        return IntStream.rangeClosed(2, n).filter(x -> x % 2 == 0).sum();
+    }
+
+    public static int sumapareslista(List<Integer> numeros) {
+        return numeros.stream().filter(x -> x % 2 == 0).mapToInt(Integer::intValue).sum();
+    }
+
+    public static List<Integer> obtenerlistapares(List<Integer> numeros) {
+        return numeros.stream().filter(x -> x % 2 == 0).collect(Collectors.toList());
+    }
+
+    public static List<Integer> listapares(int n) {
+        return IntStream.rangeClosed(2, n).filter(x -> x % 2 == 0).boxed().collect(Collectors.toList());
+    }
+
+    public static int calcularproductoescalar(List<Integer> lista1, List<Integer> lista2) {
+        return IntStream.range(0, lista1.size()).map(i -> lista1.get(i) * lista2.get(i)).sum();
+    }
+    
+}
+
+Ejercicio16
+package Ejercicio16;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
+public class Ejercicio16 {
+
+    public static void main(String[] args) {
+        try (Scanner sc = new Scanner(System.in)) {
+
+            System.out.println("Añadir limite inferior:");
+            double limInf = sc.nextDouble();
+
+            System.out.println("Añadir limite superior:");
+            double limSup = sc.nextDouble();
+
+            System.out.println("Añadir paso:");
+            double paso = sc.nextDouble();
+
+            double integral = integral(limInf, limSup, paso, x -> Math.pow(Math.exp(x), 2));
+
+            System.out.println("La integral de e^x^2 desde " + limInf + " hasta " + limSup +
+                    " con un paso de " + paso + " es: " + integral);
+        }
+    }
+
+    public static double integral(double a, double b, double h, Function<Double, Double> funcion) {
+        DoubleUnaryOperator unaryOperator = x -> funcion.apply(x); 
+
+        return DoubleStream.iterate(a, x -> x + h)
+                .limit((long) ((b - a) / h))
+                .map(unaryOperator)
+                .sum() * h;
+    }
+}
+
+Ejercicio17
+package Ejercicio17.dominio;
+import java.time.*;
+
+public class Persona {
+    private String nombre;
+    private LocalDate fechaDeNacimiento;
+
+    public Persona(String nombre, LocalDate fechaDeNacimiento) {
+        this.nombre = nombre;
+        this.fechaDeNacimiento = fechaDeNacimiento;
+    }
+
+    public long calcularEdad() {
+        LocalDate fechaActual = LocalDate.now();
+        return Period.between(fechaDeNacimiento, fechaActual).getYears();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public LocalDate getFechaDeNacimiento() {
+        return fechaDeNacimiento;
+    }
+
+    public void setFechaDeNacimiento(LocalDate fechaDeNacimiento) {
+        this.fechaDeNacimiento = fechaDeNacimiento;
+    }
+
+    public static void main(String[] args) {
+        Persona persona = new Persona("Juan", LocalDate.of(1990, 5, 15));
+        long edad = persona.calcularEdad();
+        System.out.println(persona.getNombre() + " tiene " + edad + " años.");
+    }
+}
+package Ejercicio17.dominio;
+import java.time.*;
+import java.util.*;
+import java.util.function.*;
+
+public class Personas {
+    private List<Persona> listaDePersonas;
+
+    public Personas() {
+        this.listaDePersonas = new ArrayList<>();
+    }
+
+    public void anadirPersona(Persona persona) {
+        listaDePersonas.add(persona);
+    }
+
+    public List<Persona> filtrarPorEdad(int edadMinima, int edadMaxima) {
+        Predicate<Persona> filtroEdad = persona -> persona.calcularEdad() >= edadMinima
+                && persona.calcularEdad() <= edadMaxima;
+
+        List<Persona> personasFiltradas = new ArrayList<>();
+        for (Persona persona : listaDePersonas) {
+            if (filtroEdad.test(persona)) {
+                personasFiltradas.add(persona);
+            }
+        }
+        return personasFiltradas;
+    }
+
+    public Persona elMasJoven() {
+        return listaDePersonas.stream()
+                .min(Comparator.comparing(Persona::getFechaDeNacimiento))
+                .orElse(null);
+    }
+
+    public long calcularSumaEdades() {
+        return listaDePersonas.stream()
+                .mapToLong(Persona::calcularEdad)
+                .sum();
+    }
+
+    public long calcularEdadMinima() {
+        return listaDePersonas.stream()
+                .mapToLong(Persona::calcularEdad)
+                .min()
+                .orElse(0);
+    }
+
+    public double calcularMediaDeEdad() {
+        return listaDePersonas.stream()
+                .mapToLong(Persona::calcularEdad)
+                .average()
+                .orElse(0.0);
+    }
+
+    public static void main(String[] args) {
+        Personas personas = new Personas();
+
+        Persona persona1 = new Persona("Ana", LocalDate.of(1985, 8, 20));
+        Persona persona2 = new Persona("Carlos", LocalDate.of(1992, 3, 10));
+
+        personas.anadirPersona(persona1);
+        personas.anadirPersona(persona2);
+
+        List<Persona> personasFiltradas = personas.filtrarPorEdad(25, 35);
+        System.out.println("Personas entre 25 y 35 años:");
+        for (Persona p : personasFiltradas) {
+            System.out.println(p.getNombre() + " - " + p.calcularEdad() + " años");
+        }
+
+        Persona masJoven = personas.elMasJoven();
+        if (masJoven != null) {
+            System.out.println("La persona más joven es: " + masJoven.getNombre() +
+                    ", con una edad de " + masJoven.calcularEdad() + " años.");
+        } else {
+            System.out.println("No hay personas en la lista.");
+        }
+
+        long sumaEdades = personas.calcularSumaEdades();
+        System.out.println("La suma de las edades es: " + sumaEdades);
+
+        long edadMinima = personas.calcularEdadMinima();
+        System.out.println("La edad mínima es: " + edadMinima);
+
+        double mediaEdad = personas.calcularMediaDeEdad();
+        System.out.println("La media de edad es: " + mediaEdad);
+    }
+}
+package Ejercicio17.principal;
+
+import java.time.*;
+import java.util.*;
+
+import Ejercicio17.dominio.Persona;
+import Ejercicio17.dominio.Personas;
+
+public class Principal {
+    public static void main(String[] args) {
+        Personas personas = new Personas();
+
+        Persona persona1 = new Persona("Ana", LocalDate.of(1985, 8, 20));
+        Persona persona2 = new Persona("Carlos", LocalDate.of(1992, 3, 10));
+
+        personas.anadirPersona(persona1);
+        personas.anadirPersona(persona2);
+
+        List<Persona> personasFiltradas = personas.filtrarPorEdad(25, 35);
+        System.out.println("Personas entre 25 y 35 años:");
+        for (Persona p : personasFiltradas) {
+            System.out.println(p.getNombre() + " - " + p.calcularEdad() + " años");
+        }
+
+        Persona masJoven = personas.elMasJoven();
+        if (masJoven != null) {
+            System.out.println("La persona más joven es: " + masJoven.getNombre() +
+                    ", con una edad de " + masJoven.calcularEdad() + " años.");
+        } else {
+            System.out.println("No hay personas en la lista.");
+        }
+
+        long sumaEdades = personas.calcularSumaEdades();
+        System.out.println("La suma de las edades es: " + sumaEdades);
+
+        long edadMinima = personas.calcularEdadMinima();
+        System.out.println("La edad mínima es: " + edadMinima);
+
+        double mediaEdad = personas.calcularMediaDeEdad();
+        System.out.println("La media de edad es: " + mediaEdad);
+    }
+}
