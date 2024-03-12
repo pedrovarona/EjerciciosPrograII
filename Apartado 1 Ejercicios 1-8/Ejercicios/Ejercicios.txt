@@ -1,0 +1,197 @@
+Ejercicio1
+La recursividad en programación implica que una función se llame a sí misma para 
+resolver un problema. Se divide el problema en partes más pequeñas, se resuelven 
+de manera recursiva hasta llegar a casos simples que se pueden resolver directamente 
+(caso base). Luego, se combinan las soluciones de los casos simples para obtener la 
+solución del problema original.
+
+Ejercicio3
+El problema de las Torres de Hanoi se trata de mover discos de diferentes tamaños 
+de una de las torres a la otra. 
+
+Sus reglas son:
+
+1. Solo se puede mover un disco a la vez.
+2. Un disco grande no puede ser colocado encima de un disco más pequeño.
+3. Todos los discos deben de pasarse de una torre a otra.
+
+El problema de las Torres de Hanoi se puede resolver recursivamente. La solución se trata de dividir el problema 
+en subproblemas más pequeños y resolver cada uno de ellos de manera recursiva.
+
+El algoritmo para resolver el problema de las Torres de Hanoi es el siguiente:
+
+Mover el disco más pequeño de la torre de origen a la torre intermedia.
+Mover el disco más grande de la torre de origen a la torre destino.
+Mover el disco más pequeño de la torre intermedia a la torre destino.
+
+Este proceso se repite hasta que todos los discos se hayan pasado a la ultima torre.
+
+Ejercicio4
+
+import java.util.*;
+public class Ejercicio4 {
+    public static void main(String[] args) {
+
+        
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("Ingresar el limite inferior:");
+
+            double limInf = scanner.nextDouble();
+
+
+            System.out.println("ingresar el limite soperior:");
+
+            double limSup = scanner.nextDouble();
+
+
+            System.out.println("Ingresar altura:");
+
+            double h = scanner.nextDouble();
+            double resultado = integralEXCuadrado(limInf, limSup, h);
+
+
+            System.out.println("El resultvado de la integral de e^x^2 en el intervalo [" + limInf + "," + limSup
+                    + "] con h = " + h + " es: " + resultado);
+        }
+    }
+
+    public static double integralEXCuadrado(double limInf, double limSup, double h) {
+        if (limInf >= limSup) {
+            return 0;
+
+
+        } else {
+
+            double x = limInf + h;
+            return h * Math.exp(x * x) + integralEXCuadrado(x, limSup, h);
+            
+        }
+
+    }
+
+}
+
+Ejercicio5
+El desbordamiento de pila se produce al agotar la memoria destinada a almacenar llamadas
+recursivas debido a una cantidad excesiva. Aunque generalmente se suele evitar a veces la 
+recursión puede mejorar el codigo a pesar de la eficiencia en memoria. 
+
+Ejercicio6
+import java.util.*;
+
+
+public class Ejercicio6 {
+
+    public static int sumaCodigos(String str) {
+        if (str.length() == 0) {
+
+            return 0;
+
+        } else {
+
+
+            int codigo = str.charAt(0);
+            return codigo + sumaCodigos(str.substring(1));
+        }
+    }
+
+    public static void main(String[] args) {
+
+        try (Scanner scanner = new Scanner(System.in)) {
+
+
+            System.out.println("Ingresar String:");
+            String cadena = scanner.nextLine();
+
+            int suma = sumaCodigos(cadena);
+
+            System.out.println("La suma de los codigos de la cadena '" + cadena + "' es: " + suma);
+        }
+
+    }
+}
+
+Ejercicio7
+import java.util.*;
+
+public class Ejercicio7 {
+
+    public static void main(String[] args) {
+        try (Scanner scanner = new Scanner(System.in)) {
+
+            System.out.println("Añador cadena de caracteres: ");
+
+
+            String cadena = scanner.nextLine();
+
+            System.out.println("Ingresar desplazamiento: ");
+
+
+            
+            int desplazamiento = scanner.nextInt();
+
+            System.out.println("Selecciona una opción: ");
+
+            System.out.println("1. Cifrar");
+
+            System.out.println("2. Descifrar");
+
+            int opcion = scanner.nextInt();
+
+            if (opcion == 1) {
+                String cifrada = cifrarCadena(cadena, desplazamiento);
+                System.out.println("Cadena cifrada: " + cifrada);
+
+
+
+            } else if (opcion == 2) {
+                String descifrada = descifrarCadena(cadena, desplazamiento);
+                System.out.println("Cadena descifrada: " + descifrada);
+
+
+            } else {
+                System.out.println("Opción inválida");
+            }
+        }
+    }
+
+Ejercicio8
+import java.util.*;
+
+public class Ejercicio8 {
+
+    public static void main(String[] args) {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("Añadir la cadena:");
+
+
+            String input = scanner.nextLine();
+            String output = conCodigoPar(input);
+
+            System.out.println(output);
+        }
+    }
+
+    public static String conCodigoPar(String str) {
+
+        if (str.isEmpty()) {
+
+            return "";
+        }
+
+        char firstChar = str.charAt(0);
+
+        if ((int) firstChar % 2 == 0) {
+
+            return firstChar + conCodigoPar(str.substring(1));
+
+
+        } else {
+
+
+            return conCodigoPar(str.substring(1));
+        }
+
+    }
+
+}
