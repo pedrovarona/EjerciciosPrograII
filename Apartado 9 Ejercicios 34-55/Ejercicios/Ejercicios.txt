@@ -173,9 +173,6 @@ Con la defenicion se puede observar el creicimiento de T respecto a f. La defini
 entrada de datos, T(n) no crece mas rapido que f(n) y que existen dos numeros naturales los cuales son "no" y "k" que 
 tras "no" T(n) sera menor o igual a f. 
 
---Ejercicio50--
-PREGUNTAR COMO QUE ASUMIENDO LA DEFINICION DEL EJERCICIO 48
-
 --Ejercicio51--
 La primera funcion f(x)=1 no depende de x por lo que no varia. La funcion f(x)=x tomara el valor
 de x en cada caso. La funcion f(x) = x^2 crecera lo mismo que la anterior multiplicado por si misma.
@@ -217,6 +214,3 @@ Caso tiempo instruccion 1ms y entrada n=100000
 4. n^2 = 100000^2 = 10000000000 * 1 ns = 10000000000 ns
 5. n^8 = 100000^8 = 100000000 * 1 = 100000000 ns
 6. 10^n = 10^100000 = 10^100000 * 1 = 10^100000 ns
-
---Ejercicio55--
-COMO Q PROBLEMA DEL AJEDREZ
