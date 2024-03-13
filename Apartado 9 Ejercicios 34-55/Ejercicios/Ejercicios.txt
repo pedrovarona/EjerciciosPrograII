@@ -1,0 +1,222 @@
+--Ejercicio34--
+Un algoritmo es un conjunto ordenado de instrucciones definidas para resolver una determinada tarea. 
+Son instrucciones precisas sobre como realizar una tarea especifica.
+
+--Ejercicio36--
+Esta anotacion O(n) es empleada para expresar que el tiempo de ejecucion de un algoritmo crece paralelamente al tamaño de la entrada.
+Es decir si aumenta la entrada el tiempo de ejecucion tambien lo hara.
+
+--Ejercicio37--
+La complejidad en este caso seria de 0(1).
+
+--Ejercicio38--
+Ambos metodos tienen la misma complejidad. Esta es O(1).
+
+--Ejercicio40--
+public static int sumaNaturales(int n) {
+        int suma = 0;
+        for (int i = 0; i <= n; i++) {
+            suma += i;
+        }
+        return suma;
+    }
+
+int n = 5;
+        System.out.println("La suma de los primeros " + n + " numeros naturales es: " + Mates.sumaNaturales(n));
+
+
+
+La complejidad de este apartado es de 0(n) ya que depende de la entrada dada y se ejecutra n + 1 veces.
+
+--Ejercicio41--
+He escogido el apartado 1.
+public static int suma(int n) {
+        if (n == 0) {
+            return 0;
+        } else {
+            return n + suma(n - 1);
+        }
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+        int resultado = suma(n);
+        System.out.println("La suma de los números desde 0 hasta " + n + " es: " + resultado);
+    }
+
+Para el algoritmo recursivo la complejidad seria de T(n) y O(n) ya que el algoritmo se llamara n veces el numero total
+de operaciones que se realicen seran proporcionales a n.
+
+Respecto al algoritmo iterativo, por el mismo motivo su complejidad temporal sera tambien T(n), sin embargo su complejidad
+espacial sera de O(1) ya que la cantidad de memoria utilizada sera constante a pesar del valor de n.
+
+
+--Ejercicio42--
+Puesto que n es la cardinalidad de A. Dado que AxA tendra n * n elementos la complejidad
+seria de 0(n^2).
+
+--Ejercicio43--
+La complejidad de ese metodo es de 0(m*n). Esto se debe a que m es el numero de filas de una matriz
+y n es su numero de columnas. Se emplean 2 bucles para recorrer todos los elementos de la matriz donde suma
+cada individual al total y esto acaba dando que el numero de interacciones sea proporcional al numero 
+de elementos de una matriz lo que es m*n.
+
+--Ejercicio44--
+import java.util.Scanner;
+
+public class Ejercicio44 {
+
+    public static boolean buscar(int e, int[] array) {
+        
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == e) {
+                return true; 
+            }
+        }
+        return false; 
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        
+        int[] miArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        
+        System.out.print("Ingrese el número a buscar: ");
+        int numeroBuscado = scanner.nextInt();
+
+        
+        boolean resultado = buscar(numeroBuscado, miArray);
+
+        
+        if (resultado) {
+            System.out.println("El numero " + numeroBuscado + " si esta en el array.");
+        } else {
+            System.out.println("El numero " + numeroBuscado + " no esta en el array.");
+        }
+
+        
+        scanner.close();
+    }
+}
+
+En el peor de los casos su complejidad seria de O(n) ya que este seria el caso donde el numero no este en el array o esta en la ultima posicion
+En el mejor de los casos su complejidad seria de O(1) ya que este seria el caso donde el numero se encuentre en la primera posicion
+En un caso promedio su complejidad seria en el que se tenga que recorrer aproximadamente la mitad del array para encontrar el numero.
+
+--Ejercicio45--
+import java.util.Scanner;
+
+public class metodo {
+
+    public static void main(String[] args) {
+        double[][] matriz = {{1.0, 2.0, 3.0}, {4.0, 5.0, 6.0}, {7.0, 8.0, 9.0}}; 
+        
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.print("Que numero quieres buscar en el array?: ");
+            double numero = scanner.nextDouble();
+            
+            boolean encontrado = buscarnumero(matriz, numero);
+            
+            if (encontrado) {
+                System.out.println("El numero " + numero + " esta en la matriz.");
+            } else {
+                System.out.println("El numero " + numero + " no esta en la matriz.");
+            }
+        }
+    }
+
+    public static double sumaEltosMatriz(double matriz[][]) {
+        double suma = 0;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                suma += matriz[i][j];
+            }
+        }
+        return suma;
+    }
+    
+    public static boolean buscarnumero(double matriz[][], double numero) {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                if (matriz[i][j] == numero) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+
+En el caso peor su complejidad seria de 0(n*m), ya que n es filas y m es columnas, este caso se daria cuando el algoritmo
+debe buscar el numero en todos los elementos de la matriz.
+
+--Ejercicio46--
+Debido a que cada vez que se pretenede buscar un numero en la sucesion fibonacci necesitas hayar los 
+dos anteriores su complejidad es de (2^n) tanto para la complejidad temporal como espacial.
+
+--Ejercicio47--
+Se puede observar que a medida que la entrada aumenta (100, 1000, 10000, etc) su tiempo de de ejecucion 
+aumenta de forma proporcional. A mayor entrada mayor tiempo de ejecucion. Se observa que el aumento
+es de x10 hasta llegar a la entrada 10000 de ahi el aumento varia bastante en funcion de la entrada dada.
+Se podria decir que su orden de complejidad es de orden lineal O(n).
+
+--Ejercicio48--
+Se puede observar que a medida que la entrada aumenta (100, 1000, 10000, etc) su tiempo de de ejecucion 
+aumenta considerablemente.Existen dos bucles for (int i = 1; i <= n; i++) 
+    for(int j = 1; j <= i; j++) por lo que se podria confirmar que su complejidad es de 
+    orden cuadratico O(n^2).
+
+--Ejercicio49--
+Con la defenicion se puede observar el creicimiento de T respecto a f. La definicion expliqca que a pesar de la 
+entrada de datos, T(n) no crece mas rapido que f(n) y que existen dos numeros naturales los cuales son "no" y "k" que 
+tras "no" T(n) sera menor o igual a f. 
+
+--Ejercicio50--
+PREGUNTAR COMO QUE ASUMIENDO LA DEFINICION DEL EJERCICIO 48
+
+--Ejercicio51--
+La primera funcion f(x)=1 no depende de x por lo que no varia. La funcion f(x)=x tomara el valor
+de x en cada caso. La funcion f(x) = x^2 crecera lo mismo que la anterior multiplicado por si misma.
+La tercera f(x)=log2(x) crece menos a medida que x aumenta. La ultima f(x) 2^x es la que mas 
+aumenta a medida que el valor de x lo hace ya que crece exponencialmente. De esta manera la complejidad de cada 
+funcion en orden creciente seria: f4 (exponencial) > f2 (cuadratica) > f1 (lineal) > f3 (logaritmica) > f0 constante
+
+--Ejercicio52--
+Puesto que cada llamada tiene una complejidad de n y puesto que para reducir n a 0 necesita una cantidad de pasos logaritmica
+entonces su complejidad sera n*log(n).
+
+--Ejercicio53--
+La afirmacion es cierta, ya que si se pretende agregar un numero en un arraylist no ordenado resulta menos complejo ya que se puede
+poner en cualquier posicion sin problema, sin embargo en un arraylist ordenado seria mas complejo ya que hay que buscar su posicion
+en el arraylist.
+
+
+--Ejercicio54--
+Caso tiempo instruccion 10ms y entrada n=100
+1. Log(100)= 2 instrucciones * 10 ns = 20 ns
+2. n=100 instruccioness * 10 ns = 1000 ns
+3. nlog(n) = 100*log(100) = 200 * 10ns = 2000ns
+4. n^2 = 100^2 = 1000 * 10 ns = 10000 ns
+5. n^8 = 100^8 = 100000000 * 10 = 1000000000 ns
+6. 10^n = 10^100 = 10^100 * 10 = 10^101 ns
+
+Caso tiempo instruccion 10ms y entrada n=100000
+1. Log(100000)= 5 instrucciones * 10 ns = 50 ns
+2. n=100000 instruccioness * 10 ns = 1000000 ns
+3. nlog(n) = 100000*log(100000) = 500000 * 10ns = 5000000ns
+4. n^2 = 100000^2 = 10000000000 * 10 ns = 100000000000 ns
+5. n^8 = 100000^8 = 100000000 * 10 = 1000000000 ns
+6. 10^n = 10^100000 = 10^100000 * 10 = 10^100001 ns
+
+Caso tiempo instruccion 1ms y entrada n=100000
+1. Log(100000)= 5 instrucciones * 1 ns = 5 ns
+2. n=100000 instruccioness * 1 ns = 100000 ns
+3. nlog(n) = 100000*log(100000) = 500000 * 1ns = 500000ns
+4. n^2 = 100000^2 = 10000000000 * 1 ns = 10000000000 ns
+5. n^8 = 100000^8 = 100000000 * 1 = 100000000 ns
+6. 10^n = 10^100000 = 10^100000 * 1 = 10^100000 ns
+
+--Ejercicio55--
+COMO Q PROBLEMA DEL AJEDREZ
