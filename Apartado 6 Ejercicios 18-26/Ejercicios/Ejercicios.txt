@@ -1,0 +1,33 @@
+Ejercicio18
+1. ¿Qué es Maven?
+Se trata de una herramienta de gestion de proyectos. Se utiliza para compilar, documentar y gestionar dependencias.
+
+2. ¿Qué es el repositorio central de Maven?, ¿hasta qué punto son fiables
+las bibliotecas que hay en él?
+El repositorio central de maven es una plataforma en linea la cual distribuye y almacena bibliotecas.
+Sus bibliotecas son bastante fiables ya que se supervisa entre la comunidad.
+
+3. ¿Qué es el repositorio local?
+En un proyecto existe el repositorio local y el remoto, el local es el que uno mismo trabaja en su propio
+ordenador, para mas tarde subir estos cambios al remositorio remoto.
+
+Ejercicio20
+2. ¿Qué es un arquetipo en Maven?
+Se trata de una plantilla en la que esta definida una estructura de un proyecto. Esto permite mas eficiencian 
+y rapidez a la hora de crear un nuevo proyecto.
+
+4. Explique el fichero pom.xml.
+POM o Project Object Model, es un acrhivo xml el cual contiene toda la informacion de un proyexto en maven.
+Se encuentra en la raíz de los proyectos que se crean
+
+10. Explique en qué consisten las siguientes fases:
+validate: verifica la validez del proyecto
+compile: compila el codigo del proyecto
+test: hace pruebas del proyecto "tests"
+package: vuelve al proyexto un paquete jar
+deploy: lleva archivo en paquete a un repositorio remoto
+clean: elimina los archivos sobrantes
+site: ofrece documentacion para poder verlo en un sitio web
+
+EXTRA: El resto de ejercicios no estan anotados pero se ha podido realizar todo correctamente.
+No se exactamente si debemos mandarlo ya que solo es seguir paso a paso cada instruccion.
